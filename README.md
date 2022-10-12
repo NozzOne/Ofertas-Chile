@@ -2,24 +2,6 @@
 
 Programa que hice para saber las ofertas de tiendas chilenas.<br/>ESTE REPOSITORIO ES SOLO PARA FINES DE INVESTIGACIÓN Y ESTUDIO PERSONAL.<br/>NO LO UTILICE CON FINES COMERCIALES.
 
-# Tiendas
-
-| Tienda        | Disponible   |
-| ------------- | :---:|
-| Falabella     | ✔️           |
-| Paris         | ✔️           |
-| Abcdin         | ❌           |
-| Corona        | ❌           |
-| Hites        | ❌           |
-| LaPolar        | ❌           |
-| Ripley        | ❌           |
-| Lider        | ❌           |
-| Easy        | ❌           |
-| HP        | ❌           |
-| Jumbo        | ❌           |
-| Nike        | ❌           |
-| WePLay        | ❌           |
-| Cat        | ❌           |
 
 ## Ejecutar Localmente
 
@@ -52,6 +34,25 @@ Iniciar servidor
 [Settings]
 Timer=5 #Tiempo de espera antes de actualizar
 ```
+
+# Tiendas
+
+| Tienda        | Disponible   |
+| ------------- | :---:|
+| Falabella     | ✔️           |
+| Paris         | ✔️           |
+| Abcdin         | ❌           |
+| Corona        | ❌           |
+| Hites        | ❌           |
+| LaPolar        | ❌           |
+| Ripley        | ❌           |
+| Lider        | ❌           |
+| Easy        | ❌           |
+| HP        | ❌           |
+| Jumbo        | ❌           |
+| Nike        | ❌           |
+| WePLay        | ❌           |
+| Cat        | ❌           |
 ## Screenshots
 
 ![App Screenshot](https://i.imgur.com/d38nwi6.png)
