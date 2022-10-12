@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ofertas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css' )}}">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="columns is-flex-direction-column">
+      <div class="column is-12">
+        <div class="columns is-flex-direction-row">
+          <div class="column is-6">
+            <h1 class="title is-1">Ofertas</h1>
+          </div>
+          <div class="column is-6">
+            <h1 class="title is-1" id="timer"></h1>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-12">
+          <table id="tabla" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Oferta</th>
+                <th>Nombre</th>
+                <th>Descuento</th>
+                <th>Precio</th>
+                <th>Ver</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for lista in ofertas %}
+              {% for oferta in lista %}
+              <tr>
+                <td>{{ oferta.provider }}</td>
+                <td>{{ oferta.name }}</td>
+                <td>{{ oferta.discount }}</td>
+                <td>{{ oferta.price }}</td>
+                <td><a href="{{ oferta.url }}" target="_blank" rel="noopener noreferrer">Producto</a></td>
+              </tr>
+              {% endfor %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function () {
+          $('#tabla').DataTable(
+            {
+              paging: false,
+              searching: false,
+              info: false
+            }
+          );
+        });
+
+        var seconds = "{{timer}}";
+        var timer = setInterval(function () {
+          seconds--;
+          document.getElementById("timer").innerHTML = "Actualizando en: " + seconds;
+          if (seconds == 0) {
+            clearInterval(timer);
+            // send to http://localhost:5000/
+            window.location.href = "/";
+          }
+        }, 1000);
+
+
+      </script>
+</body>
+
+</html>
