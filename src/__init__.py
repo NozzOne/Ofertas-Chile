@@ -24,4 +24,5 @@ def showOfertas():
 
 @app.route("/crearOfertas")
 def createOfertas():
-    return getProducts()
+    getProducts()
+    return True
