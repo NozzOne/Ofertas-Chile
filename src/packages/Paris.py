@@ -1,10 +1,13 @@
+import grequests
+import locale
+
 from src.packages.Cache import Cache
 from src.packages.Abstract import AbstractProvider
 
-import requests
 
 
 class Paris(AbstractProvider):
+    locale.setlocale(locale.LC_ALL, 'es_CL.UTF-8')
     def __init__(self) -> None:
         super().__init__()
         self.name = "Paris"
@@ -23,17 +26,14 @@ class Paris(AbstractProvider):
 
     def getDiscount(self, normal, price) -> str:
         return round((normal - price) / normal * 100)
-
+    
+    def fromatMoney(self, precio)->str:
+        return locale.currency(precio, grouping=True, symbol=False)
+    
     def getData(self) -> list:
-        print("Obteniendo datos de Paris...")
-        urls = self.genUrls()
-        mergedList = []
-
-        for url in urls:
-            r = requests.get(url, headers=self.HEADERS)
-            if r.status_code == 200:
-                mergedList.append(r.json()["payload"]["data"]["hits"])
-        return mergedList
+        rs = (grequests.get(u, headers=self.HEADERS) for u in self.genUrls())
+        rq = grequests.map(rs)
+        return [r.json()["payload"]["data"]["hits"] for r in rq if r.status_code == 200]
 
     def getOffers(self) -> list:
         if self.cache.fetchFromCache():
@@ -50,7 +50,7 @@ class Paris(AbstractProvider):
                             offers.append(self.createOffer(
                                 self.name, product["product_name"], str(
                                     discount)+"%",
-                                product["price"], "https://www.paris.cl/" +
+                                self.fromatMoney(product["price"]), "https://www.paris.cl/" +
                                 product["product_id"] + ".html",
                                 product["image"]["link"]))
             except Exception as e:

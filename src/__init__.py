@@ -1,12 +1,19 @@
-from flask import Flask, make_response, render_template, jsonify, request
-
+from gevent import monkey;monkey.patch_all()
+from flask import Flask, render_template
 
 from src.packages import Packages
-from src.settings.Config import Config
+
+
+
+
 
 packages = Packages()
 app = Flask(__name__, template_folder="static")
-
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+app.logger.disabled = True
+log.disabled = True
 
 def getProducts():
     return [p.getOffers() for p in packages.getAll()]
@@ -25,4 +32,4 @@ def showOfertas():
 @app.route("/crearOfertas")
 def createOfertas():
     getProducts()
-    return True
+    return ("", 204)

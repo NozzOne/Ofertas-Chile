@@ -1,7 +1,8 @@
+
+import grequests
+
 from src.packages.Cache import Cache
 from src.packages.Abstract import AbstractProvider
-
-import requests
 
 
 class Falabella(AbstractProvider):
@@ -23,16 +24,10 @@ class Falabella(AbstractProvider):
         return [self.url.format(c) for c in self.categorias]
 
     def getData(self) -> list:
-        print("Obteniendo datos de Falabella...")
-        urls = self.genUrls()
-        mergedList = []
-
-        for url in urls:
-            r = requests.get(url, headers=self.HEADERS).json()
-            if "results" in r['data']:
-                mergedList.append(r['data']["results"][0])
-
-        return mergedList
+        rs = (grequests.get(u, headers=self.HEADERS) for u in self.genUrls())
+        rq = grequests.map(rs)
+        return [r.json()["data"]["results"][0]
+                for r in rq if 'results' in r.json()["data"] and r.status_code == 200]
 
     def getOffers(self) -> list:
         if self.cache.fetchFromCache():
