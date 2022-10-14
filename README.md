@@ -1,6 +1,6 @@
 # Ofertas Chile
 
-Programa que hice para saber las ofertas de tiendas chilenas.<br/>ESTE REPOSITORIO ES SOLO PARA FINES DE INVESTIGACIÓN Y ESTUDIO PERSONAL.<br/>NO LO UTILICE CON FINES COMERCIALES.
+Programa para saber las ofertas de tiendas chilenas.<br/>ESTE REPOSITORIO ES SOLO PARA FINES DE INVESTIGACIÓN Y ESTUDIO PERSONAL.<br/>NO LO UTILICE CON FINES COMERCIALES.
 
 
 ## Ejecutar Localmente
