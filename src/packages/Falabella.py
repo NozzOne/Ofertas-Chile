@@ -32,11 +32,8 @@ class Falabella(AbstractProvider):
     def getOffers(self) -> list:
         if self.cache.fetchFromCache():
             return self.cache.get()
-        offers = []
-        for product in self.getData():
-            offers.append(self.createOffer(self.name, product["displayName"], product["discountBadge"]
-                                           ['label'][1:], product["prices"][0]["price"][0], product["url"], product["mediaUrls"]))
-
+        offers = [self.createOffer(self.name, product["displayName"], product["discountBadge"]
+                                   ['label'][1:], product["prices"][0]["price"][0], product["url"], product["mediaUrls"]) for product in self.getData()]
         self.cache.set(offers)
 
         return offers

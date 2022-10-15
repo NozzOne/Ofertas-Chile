@@ -1,2 +1,4 @@
 grequests
 Flask
+lxml
+beautifulsoup4

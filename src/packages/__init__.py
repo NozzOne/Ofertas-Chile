@@ -1,5 +1,6 @@
 from src.packages.Falabella import Falabella
 from src.packages.Paris import Paris
+from src.packages.Abcdin import Abcdin
 from src.settings.Config import Config
 
 
@@ -12,9 +13,11 @@ class Packages:
         """
         self.falabella = Falabella()
         self.paris = Paris()
+        self.abcdin = Abcdin()
         self.providerNames = {
             'falabella': self.falabella,
-            'paris': self.paris
+            'paris': self.paris,
+            'Abcdin': self.abcdin
         }
         self._timerMiliseconds = Config().getTimer() * 60000
         self._timerSeconds = Config().getTimer() * 60
@@ -40,7 +43,7 @@ class Packages:
         It returns a list of all the stores in the database
         :return: A list of the two objects.
         """
-        return [self.falabella, self.paris]
+        return [self.falabella, self.paris, self.abcdin]
 
     def getInstance(self, name):
         """

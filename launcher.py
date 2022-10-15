@@ -1,5 +1,5 @@
 import webbrowser
-from src import app, log
+from src import app
 
 
 if __name__ == "__main__":
