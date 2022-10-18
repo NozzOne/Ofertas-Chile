@@ -41,7 +41,6 @@ Timer=5 #Tiempo de espera antes de actualizar
 | ------------- | :---:|
 | Falabella     | ✔️           |
 | Paris         | ✔️           |
-| Abcdin         | 🚧           |
 | Hites        | 🚧           |
 | LaPolar        | ❌           |
 | Ripley        | ❌           |
